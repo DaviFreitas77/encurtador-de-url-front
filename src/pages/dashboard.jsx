@@ -14,9 +14,7 @@ export default function Dashboard() {
     }
   }, [])
 
-  
-  
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
