@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Sidebar from "../component/sideBar";
+import { useNavigate } from "react-router";
 
 export default function Dashboard() {
+  const navigate = useNavigate()
+ const token = localStorage.getItem("token")
+  useEffect(()=>{
+    if(!token){
+      navigate('/login')
+    }
+  },[])
   return (
     <div className="flex">
       <Sidebar />
