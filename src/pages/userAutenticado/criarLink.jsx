@@ -1,11 +1,20 @@
 import Sidebar from "../../component/sideBar"
 import urll from '../../../url.json'
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router"
 
 export default function CriarLink() {
+    const navigate = useNavigate()
     const token = localStorage.getItem("token")
-    const [dateTime,setDateTime] = useState('')
+    const [dateTime, setDateTime] = useState('')
     const [originlUrl, setOriginalUrl] = useState('')
+
+
+    useEffect(() => {
+        if (!token) {
+            navigate('/login')
+        }
+    }, [])
 
     const createLink = async (e) => {
         e.preventDefault()
@@ -17,7 +26,7 @@ export default function CriarLink() {
                     'Accept': "application/json",
                     "Authorization": `Bearer ${token}`
                 },
-                body: JSON.stringify({original_url:originlUrl,expires_at:dateTime})
+                body: JSON.stringify({ original_url: originlUrl, expires_at: dateTime })
             })
             const data = await response.json()
             console.log(data)

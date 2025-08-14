@@ -1,11 +1,20 @@
 import Sidebar from "../../component/sideBar"
 import url from '../../../url.json'
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router"
 
 export default function Links() {
     const token = localStorage.getItem("token")
+    const navigate = useNavigate()
     const [links, setLinks] = useState([])
-    const [slug, setSlug] = useState('')
+    const [qlUrl, setQrUrl] = useState()
+
+    useEffect(() => {
+        if (!token) {
+            navigate('/login')
+        }
+    }, [])
+
 
     useEffect(() => {
         const myLinks = async () => {
@@ -28,42 +37,50 @@ export default function Links() {
     }, [])
 
 
-    if (slug) {
-        const redirectUrl = async () => {
-            const response = await fetch(`${url.url}/api/s/${slug}`, {
+
+
+
+
+    const generateQRCode = async (slug) => {
+        try {
+            const response = await fetch(`${url.url}/api/qrCode/${slug}`, {
                 method: "GET",
                 headers: {
-                    'Content-type': 'application/json',
-                    'Accept': 'application/json'
+                    'Content-Type': "application/json",
+                    "Accept": 'application/json'
                 }
-
             })
-            const data = await response.json();
-            window.open(data.original_url)
-            setSlug('')
 
+            const blob = await response.blob();
+            const qrObjectUrl = URL.createObjectURL(blob);
+            setQrUrl(qrObjectUrl); 
+            console.log(response)
+        } catch (error) {
+            console.log(error)
         }
-        redirectUrl()
+
     }
 
     return (
         <div >
             <Sidebar />
             <div className="flex items-center justify-center flex-col">
-
+                {qlUrl && (
+                    <img src={qlUrl} alt="" />
+                )}
                 {links && links.map((link) => (
                     <div
                         key={link.id}
                         className="border p-3 rounded bg-white shadow-sm flex flex-col mb-4"
                     >
                         <button
-                            onClick={() => setSlug(link.slug)}
+                            onClick={() => window.open(`${url.url}/api/s/${link.slug}`, "_blank")}
                             className="text-blue-500 font-medium break-all max:w-[500px] cursor-pointer"
                         >
                             {`${url.url}/s/${link.slug}`}
                         </button>
                         <button
-                            onClick={() => setSlugQrCode(link.slug)}
+                            onClick={() => generateQRCode(link.slug)}
                             className="text-blue-500 font-medium break-all max:w-[500px] cursor-pointer"
                         >
                             gerar qrcode
