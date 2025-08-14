@@ -1,12 +1,37 @@
-# React + Vite
+<h1>Encurtador de URL - Front-end mínimo</h1>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<p>Este é o front-end do encurtador de URL, onde você poderá testar as funcionalidades sem precisar usar uma ferramenta externa, como por exemplo o Postman.</p>
 
-Currently, two official plugins are available:
+<h2>Como rodar o projeto</h2>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<h3>Clone o repositório</h3>
 
-## Expanding the ESLint configuration
+<pre><code>git clone https://github.com/DaviFreitas77/encurtador-de-url-front.git
+cd encurtador-de-url-front
+</code></pre>
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+<h3>Configuração inicial</h3>
+
+<ol>
+  <li>Instale as dependências do Node:
+    <pre><code>npm install</code></pre>
+  </li>
+</ol>
+
+<h3>Iniciando o servidor</h3>
+
+<pre><code>npm run dev</code></pre>
+
+<p>Seu front-end estará acessível em: <a href="http://localhost:5173/">http://localhost:5173/</a></p>
+
+<h2>Observações importantes</h2>
+
+<ul>
+  <li>Certifique-se de ter o Node.js instalado em sua máquina.</li>
+  <li>Na raiz do projeto, existe o arquivo <code>url.json</code>:
+    <ul>
+      <li>Esse arquivo define a URL base usada em todo o projeto.</li>
+      <li>Altere a URL nele conforme o endereço em que seu backend estiver rodando.</li>
+    </ul>
+  </li>
+</ul>
