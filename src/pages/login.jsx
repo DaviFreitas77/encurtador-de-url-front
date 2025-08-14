@@ -26,7 +26,7 @@ export default function Login() {
                 console.log(data)
                 localStorage.setItem('token',data.access_token)
                 localStorage.setItem('name',data.user.name)
-                navigate('/dashboard')
+                navigate('/')
 
             }
 

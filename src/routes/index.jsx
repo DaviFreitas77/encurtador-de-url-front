@@ -10,7 +10,7 @@ export default function AppRoutes() {
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/" element={<Dashboard />} />
       <Route path="/links" element={<Links />} />
       <Route path="/criar-link" element={<CriarLink />} />
     </Routes>
