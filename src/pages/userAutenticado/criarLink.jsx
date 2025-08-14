@@ -29,7 +29,9 @@ export default function CriarLink() {
                 body: JSON.stringify({ original_url: originlUrl, expires_at: dateTime })
             })
             const data = await response.json()
-            console.log(data)
+            alert(data.message)
+            setOriginalUrl('')
+            setDateTime('')
         } catch (error) {
             console.log(error)
         }
